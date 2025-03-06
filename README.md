@@ -1,60 +1,100 @@
-# CodeIgniter 4 Framework
+# Simple CRUD dengan CodeIgniter 4
 
-## What is CodeIgniter?
+## Deskripsi
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Project ini adalah implementasi sederhana dari fitur CRUD (Create, Read, Update, Delete) menggunakan CodeIgniter 4. CRUD adalah operasi dasar dalam pengelolaan data pada aplikasi web.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Fitur
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- **Read**: Menampilkan daftar data dari database.
+- **Create**: Menambahkan data baru ke database.
+- **Update**: Mengedit data yang sudah ada di database.
+- **Delete**: Menghapus data dari database.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Instalasi
 
-## Important Change with index.php
+### 1. Clone Repository
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+```bash
+git clone https://github.com/Bisbiss/crud_ci.git
+cd crud_ci
+```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 2. Install Dependencies
 
-**Please** read the user guide for a better explanation of how CI4 works!
+Pastikan sudah menginstal Composer, lalu jalankan perintah berikut:
 
-## Repository Management
+```bash
+composer install
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### 3. Konfigurasi Database
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+- Buat database di MySQL atau database lain yang didukung.
+- Ubah konfigurasi database di file `.env`:
 
-## Contributing
+```ini
+database.default.hostname = localhost
+database.default.database = (nama_database_mu)
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+```
 
-We welcome contributions from the community.
+- Buat tabel dalam database yang kamu buat (users) dengan kolom ('id','name', 'email', 'phone')
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+```bash
+php spark migrate
+```
 
-## Server Requirements
+### 4. Menjalankan Aplikasi
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+```bash
+php spark serve
+```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Akses aplikasi di browser dengan alamat `http://localhost:8080`.
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+## Dokumentasi Tampilan
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### Read Data
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+![image](https://github.com/Bisbiss/crud_ci/blob/main/public/dokumentasi/list.png)
+
+### Add Data
+
+![image](https://github.com/Bisbiss/crud_ci/blob/main/public/dokumentasi/tambah.png)
+
+### Update Data
+
+![image](https://github.com/Bisbiss/crud_ci/blob/main/public/dokumentasi/ubah.png)
+
+## Struktur Folder
+
+```
+crud_ci/
+│── app/
+│   ├── Controllers/
+│   ├── Models/
+│   ├── Views/
+│── public/
+│── writable/
+│── .env
+│── composer.json
+│── spark
+```
+
+## Teknologi yang Digunakan
+
+- CodeIgniter 4
+- PHP 8+
+- MySQL
+- Tailwind (untuk tampilan UI sederhana)
+
+## Kontribusi
+
+Pull request sangat diterima! Untuk perubahan besar, silakan buka issue terlebih dahulu untuk mendiskusikan apa yang ingin Anda ubah.
+
+## Lisensi
+
+Project ini menggunakan lisensi [MIT](LICENSE).
